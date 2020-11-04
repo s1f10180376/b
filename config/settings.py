@@ -25,7 +25,10 @@ SECRET_KEY = '#pyma%p)nr74=9ml**$0op^w^c-^()tf&w+kmc+c(9s5e%3gd2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '192.168.1.11',
+    'localhost',
+]
 
 
 # Application definition
