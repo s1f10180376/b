@@ -1,0 +1,35 @@
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>login</title>
+  </head>
+  <body>
+    <h2>Login</h2>
+    <form method="post">
+      {% csrf_token %}
+      {% if form.errors %}
+      <div class="">
+        {% for errors in form.errors.values %}
+        {% for error in errors %}
+        <p class="lead text-danger"><strong>{{ error }}</strong></p>
+        {% endfor %}
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% for field in form %}
+      <div class="field lead">
+        <strong>{{ field.label_tag }}</strong>
+        {{ field }}
+        {% if field.help_text %}
+        <span class="helptext">{{ field.help_text }}</span>
+        {% endif %}
+        {{ field.errors }}
+      </div>
+      {% endfor %}
+      <input type="submit" value="Login" class="btn btn-outline-primary btn-lg" />
+    </form>
+
+    <p class="lead">First time here?<a href="##" class="btn btn-success ml-3">Signup</a></p>
+  </body>
+</html>

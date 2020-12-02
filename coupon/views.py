@@ -3,6 +3,8 @@ from django.utils import timezone
 import datetime
 from coupon.models import Shop, Coupon
 
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 def home(request):
     """home screen"""
@@ -12,6 +14,7 @@ def home(request):
     }
     return render(request, 'coupon/home.html', context)
 
+@login_required
 def get(request, shop_id):
     """get a coupon"""
     shop = Shop.objects.get(pk=shop_id)
