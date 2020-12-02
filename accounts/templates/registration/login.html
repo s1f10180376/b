@@ -8,28 +8,28 @@
     <form method="post">
       {% csrf_token %}
       {% if form.errors %}
-      <div class="">
+      <div>
         {% for errors in form.errors.values %}
         {% for error in errors %}
-        <p class="lead text-danger"><strong>{{ error }}</strong></p>
+        <p><strong>{{ error }}</strong></p>
         {% endfor %}
         {% endfor %}
       </div>
       {% endif %}
 
       {% for field in form %}
-      <div class="field lead">
+      <div>
         <strong>{{ field.label_tag }}</strong>
         {{ field }}
         {% if field.help_text %}
-        <span class="helptext">{{ field.help_text }}</span>
+        <span>{{ field.help_text }}</span>
         {% endif %}
         {{ field.errors }}
       </div>
       {% endfor %}
-      <input type="submit" value="Login" class="btn btn-outline-primary btn-lg" />
+      <input type="submit" value="Login" />
     </form>
 
-    <p class="lead">First time here?<a href="{% url 'signup' %}" class="btn btn-success ml-3">Signup</a></p>
+    <p>First time here?<a href="{% url 'signup' %}">Signup</a></p>
   </body>
 </html>

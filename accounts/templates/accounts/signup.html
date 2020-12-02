@@ -6,19 +6,19 @@
     <title>Signup</title>
 </head>
 
-<body class="m-5">
-    <div class="jumbotron  p-5">
-        <h1 class="display-4 text-secondary text-center"><strong>Coupon</strong></h1>
-        <hr class="my-4">
+<body>
+    <div>
+        <h1><strong>Coupon</strong></h1>
+        <hr>
 
 
         {% block content %}
         <h2>Sign up</h2>
-        <section class="common-form">
+        <section>
             <form method="post">
                 {% csrf_token %}
                 {% if form.errors %}
-                <div class="lead text-danger">
+                <div>
                     <strong>
                     {% for errors in form.errors.values %}
                     {% for error in errors %}
@@ -30,15 +30,15 @@
                 {% endif %}
 
                 {% for field in form %}
-                <div class="">
+                <div>
                     {{ field.label_tag }}
                     {{ field }}
                     {% if field.help_text %}
-                    <p class="">{{ field.help_text }}</p>
+                    <p>{{ field.help_text }}</p>
                     {% endif %}
                 </div>
                 {% endfor %}
-                <button type="submit" class="submit btn btn-outline-success">Sign up</button>
+                <button type="submit">Sign up</button>
             </form>
         </section>
         {% endblock %}
