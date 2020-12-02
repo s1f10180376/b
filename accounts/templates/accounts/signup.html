@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>Signup</title>
+</head>
+
+<body class="m-5">
+    <div class="jumbotron  p-5">
+        <h1 class="display-4 text-secondary text-center"><strong>Coupon</strong></h1>
+        <hr class="my-4">
+
+
+        {% block content %}
+        <h2>Sign up</h2>
+        <section class="common-form">
+            <form method="post">
+                {% csrf_token %}
+                {% if form.errors %}
+                <div class="lead text-danger">
+                    <strong>
+                    {% for errors in form.errors.values %}
+                    {% for error in errors %}
+                    {{ error }}
+                    {% endfor %}
+                    {% endfor %}
+                    </strong>
+                </div>
+                {% endif %}
+
+                {% for field in form %}
+                <div class="">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.help_text %}
+                    <p class="">{{ field.help_text }}</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                <button type="submit" class="submit btn btn-outline-success">Sign up</button>
+            </form>
+        </section>
+        {% endblock %}
+
+    </div>
+</body>
+
+</html>
