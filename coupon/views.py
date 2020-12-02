@@ -4,6 +4,7 @@ import datetime
 from coupon.models import Shop, Coupon
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # Create your views here.
 def home(request):
@@ -23,6 +24,7 @@ def get(request, shop_id):
         coupon_content=shop.coupon_content,
         term=shop.term, 
         limit=(timezone.now() + datetime.timedelta(weeks=shop.term)).date(), 
+        user = request.user,
         shop=shop)
     context = {
         'coupon' : coupon,

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.conf import settings
 
 # Create your models here.
 class Shop(models.Model):
@@ -14,4 +15,5 @@ class Coupon(models.Model):
     date = models.DateTimeField(default=timezone.now)
     term = models.IntegerField(null=True)
     limit = models.DateField(null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default="")
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
