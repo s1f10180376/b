@@ -6,7 +6,11 @@ from coupon.models import Shop, Coupon
 # Create your views here.
 def home(request):
     """home screen"""
-    return render(request, 'coupon/home.html')
+    coupons = Coupon.objects.all()
+    context = {
+        'coupons' : coupons
+    }
+    return render(request, 'coupon/home.html', context)
 
 def get(request, shop_id):
     """get a coupon"""

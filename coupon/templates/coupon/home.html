@@ -7,5 +7,12 @@
 </head>
 
 <body>
-    <p>Home</p>
+  <h1>所持クーポン一覧</h1>
+  <br>
+  {% for coupon in coupons %}
+  <h3>{{coupon.coupon_name}}</h3>
+  <p>{{coupon.coupon_content}}</p>
+  <p>{{coupon.limit}}</p>
+  <hr>
+  {% endfor %}
 </body>
