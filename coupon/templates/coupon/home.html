@@ -15,8 +15,9 @@
   <br>
   {% for coupon in coupons %}
   <h3>{{coupon.coupon_name}}</h3>
+  <p>{{coupon.shop.shop_name}}</p>
   <p>{{coupon.coupon_content}}</p>
-  <p>{{coupon.limit}}</p>
+  <p>期限：{{coupon.limit}}</p>
   <hr>
   {% endfor %}
 
