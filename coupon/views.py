@@ -10,6 +10,11 @@ from django.contrib.auth.models import User
 def home(request):
     """home screen"""
     coupons = Coupon.objects.all()
+    today = timezone.now().date()
+    for c in coupons: # delete expired coupons
+        if c.limit < today:
+            c.delete()
+    coupons = Coupon.objects.all()
     context = {
         'coupons' : coupons
     }
@@ -31,3 +36,29 @@ def get(request, shop_id):
         'shop' : shop
     }
     return render(request, 'coupon/get.html', context)
+
+@login_required
+def detail(request, coupon_id):
+    coupon = Coupon.objects.get(pk=coupon_id)
+    context = {
+        'coupon' : coupon,
+    }
+    return render(request, 'coupon/detail.html', context)
+
+@login_required
+def use(request, coupon_id):
+    try:
+        coupon = Coupon.objects.get(pk=coupon_id)
+        context = {
+            'name' : coupon.coupon_name,
+            'content' : coupon.coupon_content,
+            'shop' : coupon.shop.shop_name
+        }
+        coupon.delete()
+    except Coupon.DoesNotExist:
+        context = {
+            'name' : 'このクーポンは存在しません',
+            'content' : 'すでに使用済みです',
+            'shop' : ''
+        }
+    return render(request, 'coupon/use.html', context)
