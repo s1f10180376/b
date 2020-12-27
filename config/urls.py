@@ -1,3 +1,6 @@
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.contrib import staticfiles
+
 """config URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -22,3 +25,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls')), 
 ]
+
+#staticファイルのパス設定
+urlpatterns += staticfiles_urlpatterns()
