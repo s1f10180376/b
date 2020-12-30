@@ -130,9 +130,10 @@ LOGOUT_REDIRECT_URL = 'home'
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(os.path.dirname(__file__),'static')
 # staticファイルのパス設定
-STATICFILES_DIRS = (
+STATICFILES_DIRS = [
     ('css',os.path.join(STATIC_ROOT,'css').replace('\\','/') ),
     ('js',os.path.join(STATIC_ROOT,'js').replace('\\','/') ),
     ('images',os.path.join(STATIC_ROOT,'images').replace('\\','/') ),
     ('upload',os.path.join(STATIC_ROOT,'upload').replace('\\','/') ),
-)
+    os.path.join(BASE_DIR, 'static'),
+]

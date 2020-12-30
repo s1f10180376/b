@@ -24,6 +24,7 @@ urlpatterns = [
     path(r'', include('coupon.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls')), 
+
 ]
 
 #staticファイルのパス設定

@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
     <meta charset="utf-8">
     <title>Signup</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
 </head>
 
 <body>
@@ -39,6 +41,7 @@
                 </div>
                 {% endfor %}
                 <button type="submit">Sign up</button>
+                <button type="reset">Reset</button>
             </form>
         </section>
         {% endblock %}
