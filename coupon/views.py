@@ -23,15 +23,28 @@ def home(request):
 @login_required
 def get(request, shop_id):
     """get a coupon"""
+    now = timezone.now()
     shop = Shop.objects.get(pk=shop_id)
+
+    coupons = Coupon.objects.filter(shop = shop_id)
+    for c in coupons:
+        if c.date.date() == now.date():
+            context = {
+                'comment': "既に取得済みのクーポンです。",
+                'coupon' : c,
+                'shop' : shop
+            }
+            return render(request, 'coupon/get.html', context)
+
     coupon = Coupon.objects.create(
         coupon_name=shop.coupon_name, 
         coupon_content=shop.coupon_content,
         term=shop.term, 
-        limit=(timezone.now() + datetime.timedelta(weeks=shop.term)).date(), 
+        limit=(now + datetime.timedelta(weeks=shop.term)).date(), 
         user = request.user,
         shop=shop)
     context = {
+        'comment': "クーポンを取得しました。",
         'coupon' : coupon,
         'shop' : shop
     }
