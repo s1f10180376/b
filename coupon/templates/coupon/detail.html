@@ -13,6 +13,14 @@
   <p>{{shop.shop_name}}</p>
   <p>期限：{{coupon.limit}} ({{coupon.term}}週間)</p>
   <p>取得日：{{coupon.date}}</p>
-  <p><a href="{% url 'use' coupon.id %}">使用する</a></p>
+  <p><a onclick="useConfilm()">使用する</a></p>
 </body>
+
+<script>
+  function useConfilm() {
+    if(confirm("クーポンを使用します。")) {
+      window.location.href = "{% url 'use' coupon.id %}"
+    } 
+  }
+</script>
 </html>
