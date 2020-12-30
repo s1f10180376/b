@@ -9,7 +9,7 @@
   </head>
   <body>
     <a href="{% url 'home' %}"><img src="/static/images/logo.png"  width="120" height="100" style="margin: 0 auto;"></a>
-    <h2>Login</h2>
+    <h2>ログイン</h2>
     <form method="post">
       {% csrf_token %}
       {% if form.errors %}
@@ -35,7 +35,7 @@
       <input type="submit" value="Login" />
     </form>
 
-    <p id="sign_up">First time here?<a href="{% url 'signup' %}">Signup</a></p>
+    <p id="sign_up">初めての方は<a href="{% url 'signup' %}">アカウント作成</a></p>
     <p id="logo"><img src="/static/images/logo.png"  width="280" height="180" style="margin: 0 auto;"></p> 
   </body>
 </html>

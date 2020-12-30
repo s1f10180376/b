@@ -11,7 +11,7 @@
   <h1>Home</h1>
   {% if user.is_authenticated %}
   <p>Hi {{ user.username }}</p>
-  <a href="{% url 'logout' %}">logout</a>
+  <a href="{% url 'logout' %}">ログアウト</a>
   <h1>所持クーポン一覧</h1>
   <br>
   {% for coupon in coupons %}
@@ -23,8 +23,7 @@
   {% endfor %}
 
   {% else %}
-  <p>You are not logged in</p>
-  <p><a href="{% url 'login' %}">login</a></p>
+  <p><a href="{% url 'login' %}">ログイン</a></p>
   {% endif %}
 </body>
 </html>
