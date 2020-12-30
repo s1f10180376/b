@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
   </head>
   <body>
+    <a href="{% url 'home' %}"><img src="/static/images/logo.png"  width="120" height="100" style="margin: 0 auto;"></a>
     <h2>Login</h2>
     <form method="post">
       {% csrf_token %}
