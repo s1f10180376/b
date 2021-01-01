@@ -25,6 +25,7 @@
 
     <div class="p-4">
         <h5 class="pb-3">ユーザー名 {{ user.username }} でログインしています。</h5>
+        <a class="btn btn-success" href="{% url 'username_change' %}">ユーザー名変更</a>
         <a class="btn btn-success" href="{% url 'password_change' %}">パスワード変更</a>
     </div>
 
