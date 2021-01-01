@@ -3,39 +3,42 @@
   <head>
     <meta charset="utf-8">
     <title>login</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
   </head>
-  <body>
-    <a href="{% url 'home' %}"><img src="/static/images/logo.png"  width="120" height="100" style="margin: 0 auto;"></a>
-    <h2>ログイン</h2>
+
+  <body class="p-5">
+    <div class="row">
+    <div class="col-md-6">
+    <p id="logo" class="p-5"><img src="/static/images/logo.png" class="img-fluid"></p> 
+    </div>
+
+    <div class="col-md-6">
+    <h2 class="pb-3 text-secondary font-weight-bold">ログイン</h2>
     <form method="post">
       {% csrf_token %}
       {% if form.errors %}
       <div>
         {% for errors in form.errors.values %}
         {% for error in errors %}
-        <p><strong>{{ error }}</strong></p>
+        <p class="text-left alert alert-danger">{{ error }}</p>
         {% endfor %}
         {% endfor %}
       </div>
       {% endif %}
 
-      {% for field in form %}
-      <div>
-        <strong>{{ field.label_tag }}</strong>
-        {{ field }}
-        {% if field.help_text %}
-        <span>{{ field.help_text }}</span>
-        {% endif %}
-        {{ field.errors }}
+      <div class="pb-3">
+        <input type="text" name="username" autofocus required id="id_username" class="form-control" placeholder="Username">
       </div>
-      {% endfor %}
-      <input type="submit" value="Login" />
+      
+      <div class="pb-3">
+        <input type="password" name="password" required id="id_password" class="form-control" placeholder="Password">
+      </div>
+      
+      <button type="submit" class="btn btn-lg btn-success btn-block">ログイン</button>
     </form>
-
-    <p id="sign_up">初めての方は<a href="{% url 'signup' %}">アカウント作成</a></p>
-    <p id="logo"><img src="/static/images/logo.png"  width="280" height="180" style="margin: 0 auto;"></p> 
+    <button class="btn btn-outline-success btn-block" onclick="location.href='{% url 'signup' %}'">初めての方は登録</button>
+  </div>
+  </div>
   </body>
 </html>
