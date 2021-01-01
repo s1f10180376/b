@@ -75,3 +75,7 @@ def use(request, coupon_id):
             'shop' : ''
         }
     return render(request, 'coupon/use.html', context)
+
+@login_required
+def account(request):
+    return render(request, 'coupon/account.html')
