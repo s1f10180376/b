@@ -18,15 +18,15 @@
       <div class="collapse navbar-collapse" id="bs-navi">
         <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">ログアウト</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">店舗一覧</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'shop' %}">店舗一覧</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'account' %}">アカウント設定</a></li>
         </ul>
       </div>
     </nav>
 
   <div class="p-3">
-    <h4 class="pt-3">所持クーポン一覧</h4>
     {% if coupons %}
+    <h4 class="pt-3">所持クーポン一覧</h4>
     <br>
     {% for coupon in coupons %}
     <a href="{% url 'detail' coupon.id %}" class="text-decoration-none">
@@ -38,14 +38,27 @@
     {% endfor %}
 
     {% else %}
-    <p>現在所持しているクーポンはありません。</p>
+    <h5 class="pt-3">現在所持しているクーポンはありません。</h5>
     {% endif %}
 
     {% else %}
+    <nav class="navbar navbar-expand-md navbar-light" style="box-shadow:0px 0px 5px;">
+      <a class="navbar-brand" href="{% url 'home' %}"><img src="/static/images/logo.png" width="100" height="55"></a>  
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs-navi" aria-controls="bs-navi" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+     
+      <div class="collapse navbar-collapse" id="bs-navi">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">ログイン</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'shop' %}">店舗一覧</a></li>
+        </ul>
+      </div>
+    </nav>
     <div class="p-5">
       <div class="row">
       <div class="col-md-7">
-      <p class="p-5"><img src="/static/images/logo.png"  class="img-fluid"></p> 
+      <p><img src="/static/images/logo.png"  class="img-fluid"></p> 
       </div>
 
       <div class="col-md-5">
@@ -53,7 +66,7 @@
       <p>買ったのに着ていない服･･･</p>
       <p>サイズが合わない服･･･</p>
       <h3>そんな服を世界の役に立てましょう</h3><p></p>
-      <h5>あなたの一着がSDGsに貢献します</h5>
+      <h5>あなたの一着が<span class="text-success">SDGs</span>に貢献します</h5>
       <br>
       <a class="btn btn-success btn-block" href="{% url 'login' %}">ログイン</a>
       <a class="btn btn-outline-success btn-block" href="{% url 'signup' %}">初めての方は登録</a>

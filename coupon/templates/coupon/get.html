@@ -17,16 +17,18 @@
     <div class="collapse navbar-collapse" id="bs-navi">
       <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">ログアウト</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">店舗一覧</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'shop' %}">店舗一覧</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url 'account' %}">アカウント設定</a></li>
       </ul>
     </div>
   </nav>
 
   <div class="p-4">
-    <h4>{{comment}}</h4><br>
-    <div class="card border-success mx-auto">
-      <div class="card-header alert alert-success"><strong>{{shop.shop_name}}</strong></div>
+    <h4>{{comment}}</h4>
+    {% if coupon %}
+    <p>次回のご来店で使用できます。</p><br>
+    <div class="card border-success mx-auto" >
+      <div class="card-header alert alert-success"><strong>{{coupon.shop.shop_name}}</strong></div>
       <div class="card-body text-dark">
         <h4 class="card-title"><strong>{{coupon.coupon_name}}</strong></h4>
       <div>
@@ -38,6 +40,9 @@
       </div>
     </div>
     </div>
+    {% else %}
+    <p>このクーポンの取得は1日1回までです。</p>
+    {% endif %}
   </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

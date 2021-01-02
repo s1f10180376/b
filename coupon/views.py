@@ -31,8 +31,6 @@ def get(request, shop_id):
         if c.date.date() == now.date():
             context = {
                 'comment': "既に取得済みのクーポンです。",
-                'coupon' : c,
-                'shop' : shop
             }
             return render(request, 'coupon/get.html', context)
 
@@ -46,7 +44,6 @@ def get(request, shop_id):
     context = {
         'comment': "クーポンを取得しました。",
         'coupon' : coupon,
-        'shop' : shop
     }
     return render(request, 'coupon/get.html', context)
 
@@ -60,13 +57,25 @@ def detail(request, coupon_id):
 
 @login_required
 def use(request, coupon_id):
-    coupon = Coupon.objects.get(pk=coupon_id)
-    context = {
-        'coupon' : coupon,
-    }
-    coupon.delete()
+    try:
+        coupon = Coupon.objects.get(pk=coupon_id)
+        context = {
+            'coupon' : coupon,
+        }
+        coupon.delete()
+    except Coupon.DoesNotExist:
+        context = {
+            
+        }
     return render(request, 'coupon/use.html', context)
 
 @login_required
 def account(request):
     return render(request, 'coupon/account.html')
+
+def shop(request):
+    shops = Shop.objects.all()
+    context = {
+        'shops' : shops, 
+    }
+    return render(request, 'coupon/shop.html', context)
