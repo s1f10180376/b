@@ -9,12 +9,12 @@ from django.contrib.auth.models import User
 # Create your views here.
 def home(request):
     """home screen"""
-    coupons = Coupon.objects.all()
+    coupons = Coupon.objects.filter(user=request.user.id)
     today = timezone.now().date()
     for c in coupons: # delete expired coupons
         if c.limit < today:
             c.delete()
-    coupons = Coupon.objects.all()
+    coupons = Coupon.objects.filter(user=request.user.id)
     context = {
         'coupons' : coupons
     }
@@ -60,20 +60,11 @@ def detail(request, coupon_id):
 
 @login_required
 def use(request, coupon_id):
-    try:
-        coupon = Coupon.objects.get(pk=coupon_id)
-        context = {
-            'name' : coupon.coupon_name,
-            'content' : coupon.coupon_content,
-            'shop' : coupon.shop.shop_name
-        }
-        coupon.delete()
-    except Coupon.DoesNotExist:
-        context = {
-            'name' : 'このクーポンは存在しません',
-            'content' : 'すでに使用済みです',
-            'shop' : ''
-        }
+    coupon = Coupon.objects.get(pk=coupon_id)
+    context = {
+        'coupon' : coupon,
+    }
+    coupon.delete()
     return render(request, 'coupon/use.html', context)
 
 @login_required

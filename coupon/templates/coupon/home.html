@@ -8,7 +8,6 @@
 </head>
 
 <body>
-
   {% if user.is_authenticated %}
     <nav class="navbar navbar-expand-md navbar-light" style="box-shadow:0px 0px 5px;">
       <a class="navbar-brand" href="{% url 'home' %}"><img src="/static/images/logo.png" width="100" height="55"></a>  
@@ -27,6 +26,7 @@
 
   <div class="p-3">
     <h4 class="pt-3">所持クーポン一覧</h4>
+    {% if coupons %}
     <br>
     {% for coupon in coupons %}
     <a href="{% url 'detail' coupon.id %}" class="text-decoration-none">
@@ -36,6 +36,10 @@
       </div>      
     </a>
     {% endfor %}
+
+    {% else %}
+    <p>現在所持しているクーポンはありません。</p>
+    {% endif %}
 
     {% else %}
     <div class="p-5">
